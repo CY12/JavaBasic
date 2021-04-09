@@ -62,9 +62,30 @@ public class Tem {
             }
         }
     }
+
+    public static int a = 0;
+
+    public static void count(){
+        System.out.println("a == "+a);
+        a++;
+    }
+
     public static void main(String[] args) {
             List list = new ArrayList();
-
+        for (int i = 0; i < 1000; i++) {
+            System.out.println("i == "+i);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+//                    try {
+//                        Thread.sleep(1000);
+//                    } catch (InterruptedException e) {
+//                        e.printStackTrace();
+//                    }
+                    count();
+                }
+            }).start();
+        }
 //        for (int i=0;i<10;i++){
 //            if (i == 5)
 //                break;//break 不会执行后面的 输出0 1 2 3 4

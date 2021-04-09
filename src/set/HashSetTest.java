@@ -21,6 +21,8 @@ public class HashSetTest {
 
     public static void main(String[] args){
 
+        int a = 1112144;
+        System.out.println(a+"  ");
         HashSet hashSet = new HashSet();
         Person person = new Person();
         person.setName("www");
