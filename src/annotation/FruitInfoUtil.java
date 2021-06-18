@@ -1,7 +1,6 @@
-package annotationTest;
+package annotation;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 public class FruitInfoUtil {
 

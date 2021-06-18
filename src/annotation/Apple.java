@@ -1,4 +1,4 @@
-package annotationTest;
+package annotation;
 
 public class Apple {
     @FruitName("苹果")

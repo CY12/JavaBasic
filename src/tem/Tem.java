@@ -1,11 +1,12 @@
 package tem;
 
+import map.Student;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class Tem {
     static Tem t=new Tem();
-
     class T1 extends Thread{
         public T1(String name){
             super(name);
@@ -71,6 +72,7 @@ public class Tem {
     }
 
     public static void main(String[] args) {
+
             List list = new ArrayList();
         for (int i = 0; i < 1000; i++) {
             System.out.println("i == "+i);
@@ -113,5 +115,17 @@ public class Tem {
 //            e.printStackTrace();
 //        }
 
+    }
+    public boolean Find(int target, int [][] array) {
+        for(int x = 0; x < array.length; x++){
+            for(int y = 0;y < array[x].length; y++){
+                if(array[x][y] == target){
+                    return true;
+                }else if(array[x][y] > target){
+                    break;
+                }
+            }
+        }
+        return false;
     }
 }
