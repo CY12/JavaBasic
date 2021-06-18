@@ -15,6 +15,8 @@ import java.util.concurrent.Semaphore;
  * join()方法用于将线程由”并行“变成”串行“.它用于等待其他线程的终止，在当前线程掉用了join()方法，
  *             那么当前线程将进入阻塞状态，等到另一个线程结束，
  *             当前线程再由阻塞状态转变成就绪状态，等待CPU的使用权
+ * join方法的原理就是调用相应线程的wait方法进行等待操作的，例如A线程中调用了B线程的join方法，则相当于在A线程中调用了B线程的wait方法，
+ * 当B线程执行完（或者到达等待时间），B线程会自动调用自身的notifyAll方法唤醒A线程，从而达到同步的目的。
  *
  * yield() 只是向调度器发起让出 CPU 的请求，但是 调度器可能不鸟你
  *
@@ -81,7 +83,7 @@ public class MultiThreadTest {
 
 
     public static void main(String[] args) throws InterruptedException {
-//        wrong();
+       // wrong();
         ThreadJoinTest1 t1 = new ThreadJoinTest1("今天");
         ThreadJoinTest1 t2 = new ThreadJoinTest1("明天");
         ThreadJoinTest1 t3 = new ThreadJoinTest1("后天");
@@ -89,6 +91,9 @@ public class MultiThreadTest {
             join()方法用于将线程由”并行“变成”串行“.它用于等待其他线程的终止，在当前线程掉用了join()方法，
             那么当前线程将进入阻塞状态，等到另一个线程结束，
             当前线程再由阻塞状态转变成就绪状态，等待CPU的使用权
+              程序在main线程中调用t1线程的join方法，则main线程放弃cpu控制权，并返回t1线程继续执行直到线程t1执行完毕
+         所以结果是t1线程执行完后，才到主线程执行，相当于在main线程中同步t1线程，t1执行完了，main线程才有执行的机会
+
          * 通过join方法来确保t1、t2、t3的执行顺序 main线程阻塞 知道 t1 执行完 执行t2...
          * */
         t1.start();
@@ -116,3 +121,55 @@ public class MultiThreadTest {
         }
     }
 }
+//public class ThreadJoinDemo {
+//
+//    public static void main(String[] args) {
+//        final Thread thread1 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                System.out.println("产品经理规划新需求");
+//            }
+//        });
+//
+//        final Thread thread2 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    thread1.join();
+//                    System.out.println("开发人员开发新需求功能");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        Thread thread3 = new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    thread2.join();
+//                    System.out.println("测试人员测试新功能");
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        });
+//
+//        System.out.println("早上：");
+//        System.out.println("测试人员来上班了...");
+//        thread3.start();
+//        System.out.println("产品经理来上班了...");
+//        thread1.start();
+//        System.out.println("开发人员来上班了...");
+//        thread2.start();
+//    }
+//}
+//运行结果
+//
+//        早上：
+//        测试人员来上班了...
+//        产品经理来上班了...
+//        开发人员来上班了...
+//        产品经理规划新需求
+//        开发人员开发新需求功能
+//        测试人员测试新功能

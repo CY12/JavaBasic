@@ -1,5 +1,7 @@
 package multiThraed;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 /**
  * i++
  *  可见i++执行了多部操作,从变量i中读取读取i的值->值+1 ->将+1后的值写回i中,这样在多线程的时候执行情况就类似如下了
@@ -21,6 +23,7 @@ package multiThraed;
  *      2.在堆中初始化A
  *      3.将A地址赋值给a
  * JVM 指令重排会导致 2 3 执行顺序不一定，所以双重校验锁加上volatile
+ *
  */
 public class VolatileTest extends Thread{
 
@@ -42,7 +45,6 @@ public class VolatileTest extends Thread{
 
 
     public static void main(String[] args) throws InterruptedException {
-
         VolatileTest vt = new VolatileTest();
         vt.start();
         Thread.sleep(1000);
