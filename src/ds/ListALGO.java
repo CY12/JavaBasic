@@ -64,7 +64,40 @@ public class ListALGO {
         }
     }
     // 归并排序
+    public static int[] mergeSort(int[] nums1, int[] nums2) {
+        int i =0,j=0,x=0;
+        int[] arr = new int[nums1.length+nums2.length];
+        while (i < nums1.length && j < nums2.length){
+            if (nums1[i] < nums2[j]){
+                arr[x] = nums1[i];
+                i++;
+            }else {
+                arr[x] = nums2[j];
+                j++;
+            }
+            x++;
+        }
+        if ( i == nums1.length){
+            while (j < nums2.length){
+                arr[x] = nums2[j];
+                x++;
+                j++;
+            }
+        }else if  ( j == nums2.length){
+            while (i < nums1.length){
+                arr[x] = nums1[i];
+                x++;
+                i++;
+            }
+        }
 
+        int z=0;
+        while (z < arr.length){
+            System.out.print(" "+arr[z]+" ");
+            z++;
+        }
+        return arr;
+    }
 
     public static void main(String[] args) {
         List<Integer> list = new ArrayList<>();

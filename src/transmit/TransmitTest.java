@@ -2,6 +2,7 @@ package transmit;
 
 public class TransmitTest {
     public static void main(String[] args) {
+        System.out.println();
         System.out.println("------ swapNum -------" );
         int num1 = 10;
         int num2 = 20;

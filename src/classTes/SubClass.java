@@ -23,6 +23,9 @@ public class SubClass extends Parent {
         System.out.println("子类--初始化块");
     }
 
+    public static void Fly(){
+        System.out.println("父类--Fly");
+    }
     // 构造器
     public SubClass() {
         System.out.println("子类--构造器");
@@ -32,6 +35,10 @@ public class SubClass extends Parent {
     // 程序入口
     public static void main(String[] args) {
         SubClass subClass = new SubClass();
+        Parent p = new SubClass();
+
         subClass.get();
+        Fly();
+        Parent.Fly();
     }
 }

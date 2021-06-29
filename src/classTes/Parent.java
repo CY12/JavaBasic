@@ -26,7 +26,9 @@ class Parent {
         System.out.println("i=" + i + ", j=" + j);
         j = 9;
     }
-
+    public static void Fly(){
+        System.out.println("父类--Fly");
+    }
     public void get(){
 
     }
