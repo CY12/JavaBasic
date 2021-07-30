@@ -2,10 +2,7 @@ package tem;
 
 import map.Student;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class OneHand {
 
@@ -78,11 +75,14 @@ public class OneHand {
 //        String[] t = a.split("[(]",2);
 //        System.out.println(t[0]+" t"+t.length);
 //        System.out.println(t[1]+" t"+t.length);
-//        String s = "你好-(私聊):喜喜喜喜:ldsd:";
-//        String[] msg = s.split(":",2);
+//        System.out.println("=======");
+//        String t = "你好-(私聊):喜喜喜喜:ldsd:";
+//        String[] msg = t.split(":",2);
 //        String head = msg[0];
 //        String[] name = head.split("-");
-//        System.out.println(s);
+//        System.out.println(name[1]);
+        String ss = "今夕何夕兮，搴舟中流。" + "今日何日兮，得与王子同舟。" + "蒙羞被好兮，不訾诟耻。" + "心几烦而不绝兮，得知王子。";
+        ss.split(",|。");
 
 //        int[] arr = {11,44,23,67,88,65,34,48,9,12};
 //        int[] tmp = new int[arr.length];    //新建一个临时数组存放

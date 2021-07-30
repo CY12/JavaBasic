@@ -14,6 +14,11 @@ public class LinkedListALGO {
             this.value = value;
         }
 
+        public  Node(int value,Node next){
+            this.value = value;
+            this.next = next;
+        }
+
 //        @Override
 //        public boolean equals(Object obj) {
 //            if (this == obj){
@@ -100,6 +105,39 @@ public class LinkedListALGO {
             slow = slow.next;
         }
         return slow;
+    }
+// 事先预备一个
+    public Node removeNthFromEnd(Node head, int n) {
+        Node dummy = new Node(0, head);
+        Node first = head;
+        Node second = dummy;
+        for (int i = 0; i < n; ++i) {
+            first = first.next;
+        }
+        while (first != null) {
+            first = first.next;
+            second = second.next;
+        }
+        second.next = second.next.next;
+        Node ans = dummy.next;
+        return ans;
+    }
+
+    public Node removeNthFromEnd2(Node head, int n) {
+        Node fast = head;
+        Node slow = head;
+        for (int i = 0;i<n;i++){
+            fast = fast.next;// 这里暂定不会出现空指针
+        }
+        if(fast == null){// 当fast 为 null 则代表删除头结点
+            return head.next;
+        }
+        while (fast.next != null){
+            fast = fast.next;
+            slow = slow.next;
+        }
+        slow.next = slow.next.next;
+        return head;
     }
 
 
